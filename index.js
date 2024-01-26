@@ -1,5 +1,6 @@
 const app = require("express")();
 const cors = require("cors");
+require("dotenv").config();
 const MongoClient = require('mongodb').MongoClient;
 app.use(cors());
 
@@ -7,7 +8,9 @@ app.use(require("express").json());
 app.listen(3001, () => {
     console.log("listening on port 3001");
 });
-const url = 'mongodb+srv://pratham2908:ptnsamnvd1@cluster0.nemoxpd.mongodb.net/';
+const name = process.env.MY_DATABASE_USERNAME;
+const password = process.env.MY_DATABASE_PASSWORD;
+const url = `mongodb+srv://${name}:${password}@cluster0.nemoxpd.mongodb.net/`;
 const client = new MongoClient(url);
 
 async function run() {
